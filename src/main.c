@@ -55,6 +55,7 @@ int main()
   char** argv;
 
   while (1) {
+    printf("$ ");
     fgets(buf, 8096, stdin);
 
 apply_alias:
@@ -78,9 +79,10 @@ apply_alias:
       goto release_and_exit;
     } else {
       for (int i = 0; i < n_aliased_command; ++i) {
+        // printf("alias : %s command : %s\n", aliased_commands[i]->alias, aliased_commands[i]->command);        
         if (strcmp(argv[0], aliased_commands[i]->alias) == 0) {
           // TODO: fill here!
-
+          strcpy(buf, aliased_commands[i]->command);
           goto apply_alias;
         }
       }
@@ -118,6 +120,20 @@ int do_alias(int argc, char** argv) {
     return -1;
 
   // TODO: Fill it!
+  // printf("do_alias\n");
+  char* temp = strtok(argv[1], "=");
+
+  // printf("alias : %s\n", temp);
+
+  aliased_commands[n_aliased_command] = malloc(sizeof(struct aliased_command));
+
+  strcpy(aliased_commands[n_aliased_command]->alias,temp);
+
+  temp = strtok(NULL,"'");
+  // printf("command : %s\n", temp);
+
+  strcpy(aliased_commands[n_aliased_command++]->command,temp);
+ 
 
   return 0;
 }

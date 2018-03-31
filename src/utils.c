@@ -7,11 +7,24 @@ void mysh_parse_command(const char* command,
 {
 	char* argvTemp = strtok(command, " \n\t");
 	*argv = (char**)malloc(sizeof(char*)*10);
-
-	for(*argc = 0; argvTemp != NULL ; (*argc)++) {
+	if(argvTemp != NULL && strcmp(argvTemp, "alias") == 0) {
+		*argc = 0;
 		(*argv)[*argc] = (char*)malloc(sizeof(char));
 		strcpy((*argv)[*argc], argvTemp);
-		argvTemp = strtok(NULL," \n\t");
+
+		(*argc)++;
+
+		argvTemp = strtok(NULL,"\n");
+		(*argv)[*argc] = (char*)malloc(sizeof(char));
+		strcpy((*argv)[*argc], argvTemp);
+
+		(*argc)++;
+	} else {
+		for(*argc = 0; argvTemp != NULL ; (*argc)++) {
+			(*argv)[*argc] = (char*)malloc(sizeof(char));
+			strcpy((*argv)[*argc], argvTemp);
+			argvTemp = strtok(NULL," \n\t");
+		}
 	}
 
 	if(*argc == 0){
