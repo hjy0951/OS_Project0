@@ -129,7 +129,7 @@ int do_alias(int argc, char** argv) {
 
   strcpy(aliased_commands[n_aliased_command]->alias,temp);
 
-  temp = strtok(NULL,"'");
+  temp = strtok(NULL,"\"'");
   // printf("command : %s\n", temp);
 
   strcpy(aliased_commands[n_aliased_command++]->command,temp);
@@ -140,6 +140,7 @@ int do_alias(int argc, char** argv) {
 
 int validate_alias_argv(int argc, char** argv) {
   // TODO: Fill it!
+  if(argc == 1) return 0; // enter only alias?
   return 1;
 }
 
