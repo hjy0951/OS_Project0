@@ -26,12 +26,22 @@ int do_pwd(int argc, char** argv) {
 
 int validate_cd_argv(int argc, char** argv) {
   // TODO: Fill it!
-  if(argc == 1) return 0;
+  if(argc == 1) return 0; // enter only cd -> error
+
+  if(argc > 2){ // enter many arguement
+    for(int i = 2 ; i <= argc ; i++)
+      {
+        (*argv)[i] = NULL; 
+        // printf("\n%s\n",(*argv)[i]);
+      }
+  }
   return 1;
 }
 
 int validate_pwd_argv(int argc, char** argv) {
   // TODO: Fill it!
+  
+  //pwd has no argument!
   return 1;
 }
 

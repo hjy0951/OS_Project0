@@ -140,7 +140,7 @@ int do_alias(int argc, char** argv) {
 
 int validate_alias_argv(int argc, char** argv) {
   // TODO: Fill it!
-  if(argc == 1) return 0; // enter only alias?
+  if(argc == 1) return 0; // enter only alias -> error
   return 1;
 }
 
